@@ -14,6 +14,13 @@ html {
   box-sizing: border-box;
 }
 
+/* For smooth animations */
+a,
+button,
+input {
+  transition: all 0.1s ease-in;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
@@ -21,6 +28,7 @@ body {
   line-height: 1.9;
   background-color: #f3f3f3;
   width: 100%;
+  z-index: 0;
 }
 
 .nav {
@@ -30,6 +38,14 @@ body {
   align-items: center;
   z-index: 100;
   background-color: #fffbd7;
+  transition: all 0.3s ease-in;
+}
+/* nav and stickly class at the same time */
+.sticky {
+  position: fixed;
+  width: 100%;
+  top: 100;
+  transition: all 0.3s ease-in;
 }
 
 .nav__logo {
@@ -59,7 +75,7 @@ body {
   font-weight: 400;
   font-size: 20px;
   display: block;
-  transition: all 0.8s;
+  transition: all 0.5s;
   color: #404040;
 }
 
@@ -130,17 +146,17 @@ body {
   top: 630px;
 }
 
-.section {
-  height: 1000px;
+.section--1 {
+  height: 800px;
   background-color: #faf4e5;
 }
 
-.section__description--1 {
+.section__text_small {
   padding: 60px 240px 0px 340px;
   color: #fe7e7e;
 }
 
-.section__header--1 {
+.section__description {
   padding: 10px 240px 0px 340px;
   font-family: 'Vidaloka', serif;
   font-size: 48px;
@@ -151,20 +167,27 @@ body {
 }
 
 .slider {
-  padding: 0px 240px 0px 340px;
-  padding-top: 100px;
   max-width: 100rem;
   height: 50rem;
   margin: 0 auto;
   position: relative;
+  /* max-width: 1700px; */
+  /* IN THE END */
+  overflow: hidden;
 }
 
 .slide {
+  padding: 0px 240px 0px 340px;
+  padding-top: 100px;
+  position: absolute;
   display: flex;
   flex-direction: row;
+  transition: transform 1s;
+  display: flex;
 }
 
 .testimonial {
+  padding-top: 30px;
   padding-left: 50px;
   display: flex;
   flex-direction: column;
@@ -174,6 +197,7 @@ body {
   font-family: 'Vidaloka', serif;
   font-size: 48px;
   font-weight: 300;
+
   color: #4a4a4a;
 }
 
@@ -185,13 +209,13 @@ body {
 .slider__btn--left {
   position: absolute;
   top: 32%;
-  left: 15%;
+  left: 13%;
 }
 
 .slider__btn--right {
   position: absolute;
   top: 32%;
-  right: 12%;
+  right: 10%;
 }
 
 .slider__img_arrow {
@@ -208,4 +232,143 @@ body {
 
 .slider__btn:hover {
   cursor: pointer;
+  background-color: rgb(77, 77, 77);
+  transition: 0.1s ease-out;
+}
+
+.slider__btn:active {
+  transition: 0.1s ease-out;
+  cursor: pointer;
+  box-shadow: 0 0 18px rgba(113, 113, 113, 0.4);
+  transform: translate(0%, 4%);
+  /* box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15); */
+}
+
+.dots {
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+
+.dots__dot {
+  border: none;
+  background-color: #b9b9b9;
+  opacity: 0.7;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+  margin-right: 1.75rem;
+  cursor: pointer;
+  transition: all 0.5s;
+
+  /* Only necessary when overlying images */
+  /* box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.7); */
+}
+
+.dots__dot--active {
+  /* background-color: #fff; */
+  background-color: #888;
+  opacity: 1;
+}
+
+.transition__bottom {
+  position: absolute;
+}
+
+.section--2 {
+  height: 920px;
+  background-color: #ffebe0;
+}
+
+.section__text_small--2 {
+  padding-top: 200px;
+}
+
+.experience__content_texture {
+  position: absolute;
+  z-index: -1;
+  left: 70%;
+  bottom: 12%;
+}
+
+.experience {
+  position: absolute;
+  padding-top: 75px;
+  left: 25%;
+  align-items: center;
+  z-index: 10;
+}
+
+.experience__tab-container {
+  position: absolute;
+  left: 22%;
+  bottom: 76%;
+  transform: translateY(-55%);
+}
+
+.experience__tab {
+  font-family: 'Mouse Memoirs', sans-serif;
+  text-decoration: none;
+  padding: 7px 45px 7px 45px;
+  width: 170px;
+  border: none;
+  font-size: 23px;
+  margin-right: 25px;
+  border-radius: 3px;
+  /*  border: 1px solid #d3d3d3; */
+  z-index: 11;
+}
+
+.experience__tab--active {
+  transform: translateY(-18%);
+}
+
+.experience__tab:hover {
+  cursor: pointer;
+  box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.05);
+}
+
+.experience__tab--1 {
+  background-color: #ebffcb;
+}
+.experience__tab--2 {
+  background-color: #cbfffc;
+}
+.experience__tab--3 {
+  background-color: #ffdef2;
+}
+
+.experience__background {
+  border-radius: 10px;
+  padding: 75px 65px 45px 75px;
+  width: 950px;
+  background-color: #fff7e7;
+}
+
+.experience__content {
+  padding-top: 45px;
+  display: none;
+  justify-content: space-between;
+  display: none;
+  visibility: hidden;
+  transition: all 0.5s;
+  opacity: 0;
+}
+
+.experience__content--active {
+  transform: translateY(-12%);
+  display: flex;
+  visibility: visible;
+  transition: all 0.5s;
+  opacity: 100;
+}
+
+.experience__content_text-desc {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  width: 380px;
+  z-index: 10;
 }

@@ -1,1 +1,299 @@
 'use strict';
+
+// Smooth scroll to line Up
+const btnScroll = document.querySelector('.btn--scroll-to');
+const sectionToScroll = document.querySelector('#section--1');
+
+btnScroll.addEventListener('click', function () {
+  // Modern Approach of doing the same thing (works only on new browsers)
+  sectionToScroll.scrollIntoView({ behavior: 'smooth' });
+});
+
+/* 
+
+
+
+
+
+*/
+// Smooth scroll while clicking nav bnts in nav
+
+// This a first approach. However it is not efficient.
+// Cuz it actually makes coppies of eventHandlers for each link
+// Might cause bad performance if there will be a lot of ellemnts
+/* 
+document.querySelectorAll('.nav__link').forEach(function (elem) {
+  elem.addEventListener('click', function (event) {
+    // Removing default scrolling caused by anchors
+    event.preventDefault();
+    // We need the link form nav__link
+    const id = this.getAttribute('href'); //#section--1,2,3
+    console.log('Link');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  });
+}); 
+*/
+
+// here is the second approach for smmoth nav buttons scrolling
+// We will use an event delegation
+// We will try to detect and catch the event we need in parent element.
+// Yes I hope U know that event in child will also appear in
+// parents ellements as well
+
+// sooo, LETS TRY EVENT DELEGATION
+// 1) Add event listener to parent element
+// 2) Detect which element originated the event
+
+document
+  .querySelector('.nav__links')
+  .addEventListener('click', function (event) {
+    //console.log(event.target); // <a class="nav__link" href="#section--1">Features</a>
+    // Removing default scrolling caused by anchors
+    event.preventDefault();
+
+    if (event.target.classList.contains('nav__link')) {
+      // We need the link form nav__link
+      const id = event.target.getAttribute('href');
+      document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+/* 
+
+
+
+
+
+*/
+// Menu fade animation while hovering
+const nav = document.querySelector('.nav');
+const handleCoverNav = function (event, opacity, color) {
+  if (event.target.classList.contains('nav__link')) {
+    // link which is covered by mouse
+    const link = event.target;
+
+    // rest of the links which are not covered by mouse
+    const sibling = link.closest('.nav').querySelectorAll('.nav__link');
+    // selecting logo
+    const logo = link.closest('.nav').querySelector('img');
+
+    const button = link.closest('.nav').querySelector('.nav__link--btn');
+
+    const nav = document.querySelector('.nav');
+    sibling.forEach(function (elem) {
+      if (elem !== link) elem.style.opacity = opacity;
+    });
+
+    nav.style.backgroundColor = `#${color}`;
+  }
+};
+
+nav.addEventListener('mouseover', function (event) {
+  handleCoverNav(event, 0.5, 'FFF8B8');
+});
+
+nav.addEventListener('mouseout', function (event) {
+  handleCoverNav(event, 1, 'FFFBD7');
+});
+/*
+
+
+
+
+*/
+// Making Slider Component
+// Selecting all the sliders
+const slides = document.querySelectorAll('.slide');
+// And the parant element of sliders
+const allSlides = document.querySelector('.slider');
+
+// selecting slider btns
+const btnSliderLeft = document.querySelector('.slider__btn--left');
+const btnSliderRight = document.querySelector('.slider__btn--right');
+const dotsContainer = document.querySelector('.dots');
+
+// flag for current slide
+let currentSlide = 0;
+
+// how many slides?
+const slidesCount = slides.length;
+// some transformation in order to make things visible.
+// Not nessesary for slider functionality
+//allSlides.style.transform = 'scale(0.8) translateX(-1000px)';
+// overflow is hidden in css so lets make it visible
+//allSlides.style.overflow = 'visible';
+
+// transforming each slide by moving them to the right
+slides.forEach(function (item, index) {
+  item.style.transform = `translate(${100 * index}%)`;
+});
+// So at the begining all slides will will have the following properties
+// 0%, 100%, 200%, etc
+
+// Adding event on right/left btns
+//
+// Going to the next slide
+// we want changes to be like this after clicking right btn
+// -100%, 0%, 100%, 200% etc
+const moveRight = function () {
+  if (currentSlide == slidesCount - 1) {
+    currentSlide = 0;
+  } else {
+    currentSlide++;
+  }
+  slides.forEach(function (item, index) {
+    item.style.transform = `translate(${100 * (index - currentSlide)}%)`;
+  });
+  changeDotsColor(currentSlide);
+};
+
+// Going to the previous slide
+// we want changes to be like this after clicking right btn
+// 100%, 200%, 300%, 400% etc
+const moveLeft = function () {
+  if (currentSlide == 0) {
+    currentSlide = slidesCount - 1;
+  } else {
+    currentSlide--;
+  }
+  slides.forEach(function (item, index) {
+    item.style.transform = `translate(${100 * (index - currentSlide)}%)`;
+  });
+  changeDotsColor(currentSlide);
+};
+
+btnSliderLeft.addEventListener('click', moveLeft);
+btnSliderRight.addEventListener('click', moveRight);
+
+// Using arrow keys to move right/left
+document.addEventListener('keydown', function (event) {
+  event.preventDefault();
+  if (event.key === 'ArrowLeft') {
+    moveLeft();
+  }
+  if (event.key === 'ArrowRight') {
+    moveRight();
+  }
+  changeDotsColor(currentSlide);
+});
+
+// Creating dots in html
+const createDots = function () {
+  // We will have dots as musch as slides. So lets loop over slides
+  slides.forEach(function (_, index) {
+    dotsContainer.insertAdjacentHTML(
+      'beforeend',
+      `<button class ="dots__dot" data-slide="${index}" ></button>`
+    );
+  });
+};
+// Trigger fn to show dots from the start
+createDots();
+
+const changeDotsColor = function (currentSlide) {
+  // remove active color from all the dots
+  document.querySelectorAll('.dots__dot').forEach(function (dot) {
+    dot.classList.remove('dots__dot--active');
+  });
+  // finding active dot that has current slide
+  document
+    .querySelector(`.dots__dot[data-slide="${currentSlide}"]`)
+    .classList.add('dots__dot--active');
+};
+
+// trigger this function from the start in order
+// the current slide to be active from the begining
+changeDotsColor(0);
+
+dotsContainer.addEventListener('click', function (event) {
+  if (event.target.classList.contains('dots__dot')) {
+    // checking on what slide we are
+    const slideInd = event.target.dataset.slide;
+    currentSlide = slideInd;
+    // moving to appropriate slide
+    slides.forEach(function (item, index) {
+      item.style.transform = `translate(${100 * (index - slideInd)}%)`;
+    });
+    changeDotsColor(slideInd);
+  }
+});
+/* 
+
+
+
+
+
+*/
+// Sticky Navigation but with using Intersection Observer API
+// what we want to show
+const stickyNav = document.querySelector('.nav');
+// what section we want to observe
+const navObserveSect = document.querySelector('.header');
+// getting exat margin from where we want to show
+const navHeight = stickyNav.getBoundingClientRect().height;
+
+// conditions in which our function will trigger
+const obsOptionsNav = {
+  // dont really know why we use null here
+  root: null,
+  // we want nav to show up when generic nav is out of viewport
+  threshold: 0,
+  // we make nav bar appear a bit earlier before section
+  // but its better to calculate it dynamicly in order to have a good
+  // responsive design. (hardcoding 90px is not always a good idea)
+  // rootMargin: '-90px',
+  rootMargin: `-${navHeight - navHeight + 1}px`,
+};
+
+const obsCallbackNav = function (entries, observer) {
+  const [entry] = entries;
+
+  // if we do not see header section in viewport - we ADD class.
+  if (!entry.isIntersecting) stickyNav.classList.add('sticky');
+  // if We SEE header section we remove it
+  else stickyNav.classList.remove('sticky');
+};
+
+const headerObserver = new IntersectionObserver(obsCallbackNav, obsOptionsNav);
+
+headerObserver.observe(navObserveSect);
+/* 
+
+
+
+
+*/
+// Tabbed components in experience
+const tabs = document.querySelectorAll('.experience__tab');
+const tabsContainer = document.querySelector('.experience__tab-container');
+const tabsContent = document.querySelectorAll('.experience__content');
+
+tabsContainer.addEventListener('click', function (event) {
+  // Choosing parent elem so every click will be on whole element
+  // but not child elements inside.
+  // To do that we use closest,
+  // which will refer on next closest parent/child element
+  const clickedElem = event.target.closest('.experience__tab');
+  console.log(clickedElem);
+  // <button class="btn operations__tab operations__tab--2 operations__tab--active" data-tab="2"> <span>02</span>Instant Loans</button>
+  // And we also have to get rid of clicking on parent element
+  // If we clicked on parent element - this event handler will return null.
+  // and we stop the execution
+  if (clickedElem === null) return;
+
+  // removing class on all tabs
+  tabs.forEach(function (elem) {
+    elem.classList.remove('experience__tab--active');
+  });
+  // adding shift on active tab
+  clickedElem.classList.add('experience__tab--active');
+
+  // removing all content before showing appropriate
+  tabsContent.forEach(function (elem) {
+    elem.classList.remove('experience__content--active');
+  });
+  // adding appropriate content to tab number. Check out how we reach
+  // to the appropriate elem with data-tab in html
+  document
+    .querySelector(`.experience__content--${clickedElem.dataset.tab}`)
+    .classList.add('experience__content--active');
+});

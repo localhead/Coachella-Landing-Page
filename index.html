@@ -40,7 +40,7 @@
   </head>
   <body>
     <div class="header">
-      <nav class="nav container">
+      <nav class="nav">
         <img
           src="img/coachella_logo 1.png"
           alt="Coachella logo"
@@ -52,7 +52,7 @@
             <a class="nav__link" href="#section--1">Line up</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link" href="#section--1">Experience</a>
+            <a class="nav__link" href="#section--2">Experience</a>
           </li>
           <li class="nav__item">
             <a class="nav__link" href="#section--1">Plan</a>
@@ -83,9 +83,9 @@
       </div>
     </div>
     <img class="transition__top" src="img/gap_bg_1.png" alt="" />
-    <section class="section" id="section--1">
-      <h4 class="section__description--1">get ready for</h4>
-      <h2 class="section__header--1">
+    <section class="section section--1" id="section--1">
+      <h4 class="section__text_small section__text_small--1">get ready for</h4>
+      <h2 class="section__description section__description--2">
         All of your favorite artists<br />
         in one place
       </h2>
@@ -105,13 +105,114 @@
             </blockquote>
           </div>
         </div>
+
+        <div class="slide slide--2">
+          <img src="img/TheWeeknd.png" alt="" class="testimonial__photo" />
+          <div class="testimonial">
+            <h5 class="testimonial__name">The Weeknd</h5>
+            <blockquote class="testimonial__text">
+              It’s been a few years since The Weeknd went full-on pop star.
+              Early in his career, the Canadian crooner refused to reveal his
+              identity and sang dark songs about sex, drugs, and longing. His
+              seminal 2011 mixtape, House of Balloons, was like the woozy
+              soundtrack to an endless, libidinous loop of willful couch
+              crashing.
+            </blockquote>
+          </div>
+        </div>
+
+        <div class="slide slide--3">
+          <img src="img/ArcticMonkeys.png" alt="" class="testimonial__photo" />
+          <div class="testimonial">
+            <h5 class="testimonial__name">Arctic Monkeys</h5>
+            <blockquote class="testimonial__text">
+              With their nervy and literate indie rock sound, Arctic Monkeys
+              arrived in 2005 with a blast. Assisted by rave reviews and online
+              word of mouth (they were one of the first bands to benefit from
+              social media), the band quickly became a sensation in the United
+              Kingdom, where they were seen as the heir apparent to the throne
+              left vacant by Oasis and the Libertines.
+            </blockquote>
+          </div>
+        </div>
         <button class="slider__btn slider__btn--left">
           <img class="slider__img_arrow" src="img/arrow_white 2.png" alt="" />
         </button>
         <button class="slider__btn slider__btn--right">
           <img class="slider__img_arrow" src="img/arrow_white 1.png" alt="" />
         </button>
+        <div class="dots"></div>
       </div>
     </section>
+    <img class="transition__bottom" src="img/gap_bg 2.png" alt="" />
+
+    <section class="section section--2" id="section--2">
+      <h4 class="section__text_small section__text_small--2">
+        it’s going to be legendary
+      </h4>
+      <h2 class="section__description section__description--2">
+        It is not only about the musical <br />experience...
+      </h2>
+
+      <div class="experience">
+        <div class="experience__tab-container">
+          <button
+            class="experience__tab experience__tab--1 experience__tab--active"
+            data-tab="1"
+          >
+            Activities
+          </button>
+          <button class="experience__tab experience__tab--2" data-tab="2">
+            Art
+          </button>
+          <button class="experience__tab experience__tab--3" data-tab="3">
+            Eat & Drink
+          </button>
+        </div>
+        <img
+          class="experience__content_texture"
+          src="img/texture_1.png"
+          alt=""
+        />
+        <div class="experience__background">
+          <div
+            class="experience__content experience__content--1 experience__content--active"
+          >
+            <img class="experience__content_img" src="img/exp_1.png" alt="" />
+            <p class="experience__content_text-desc">
+              The Energy Playground powers up the crowd and charges your phones!
+              The Global Inheritance Energy SeeSaws provides festival attendees
+              the opportunity to learn about energy from the best seat in the
+              house!
+            </p>
+          </div>
+          <div class="experience__content experience__content--2">
+            <img class="experience__content_img" src="img/exp_2.png" alt="" />
+            <p class="experience__content_text-desc">
+              Enter this D.I.Y. domain and let your creativity flow. This year
+              we probe the question, can something as classic as crafts and
+              something as futuristic as NFTs coexist in the same space?
+            </p>
+          </div>
+          <div class="experience__content experience__content--3">
+            <img class="experience__content_img" src="img/exp_3.png" alt="" />
+            <p class="experience__content_text-desc">
+              Food Trucks & vendors of nearly every type (vegetarian/vegan
+              items) will be on hand to feed all your on site camping hunger
+              needs. Head to the hill in Lot 8 to get your grub on! PLUS, Beer
+              to go + more!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section--2" id="section--3">
+      <h4 class="section__text_small section__text_small--3">have no doubts</h4>
+      <h2 class="section__description section__description--3">
+        Everything you need to remember<br />
+        this summer forever
+      </h2>
+    </section>
+    <script src="js/script.js"></script>
   </body>
 </html>
