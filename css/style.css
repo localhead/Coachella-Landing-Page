@@ -12,6 +12,7 @@
 
 html {
   box-sizing: border-box;
+  width: auto;
 }
 
 /* For smooth animations */
@@ -61,11 +62,11 @@ body {
 }
 
 .nav__item {
-  margin-left: 63px;
+  margin-left: 53px;
 }
 
 .nav__link--btn {
-  margin-left: 80px;
+  margin-left: 40px;
 }
 
 .nav__link:link,
@@ -140,10 +141,10 @@ body {
   scale: 92%;
 }
 
-.transition__top {
-  background: url('../img/gap_bg_1.png') center top / cover;
+.transition__top-1 {
   position: absolute;
   top: 630px;
+  width: 100%;
 }
 
 .section--1 {
@@ -275,10 +276,11 @@ body {
 
 .transition__bottom {
   position: absolute;
+  width: 100%;
 }
 
 .section--2 {
-  height: 920px;
+  height: 830px;
   background-color: #ffebe0;
 }
 
@@ -371,4 +373,167 @@ body {
   font-size: 16px;
   width: 380px;
   z-index: 10;
+}
+
+.section--3 {
+  background-color: #ffebe0;
+  height: 1530px;
+}
+
+.section__text_small--3 {
+  padding-top: 200px;
+}
+
+.plan {
+  padding: 0px 340px 100px 340px;
+}
+
+.plan__hotels {
+  padding-top: 120px;
+  padding-bottom: 80px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.plan__payment {
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.plan__title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 36px;
+  color: #474747;
+}
+
+.plan__desc {
+  width: 500px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #5f5f5f;
+}
+
+.plan__texture-1 {
+  position: absolute;
+  left: 9.5%;
+  top: 2890px;
+  opacity: 80%;
+}
+.plan__texture-2 {
+  position: absolute;
+  left: 65%;
+  top: 2690px;
+  opacity: 80%;
+}
+
+.transition__top-2 {
+  position: absolute;
+  top: 3700px;
+  width: 100%;
+}
+
+.section--4 {
+  height: 300px;
+  background-color: #faf4e5;
+}
+
+.offer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section__text_small {
+  padding-right: 340px;
+}
+
+.section__description {
+  padding-right: 300px;
+}
+
+.section__description--btn {
+  margin-top: 40px;
+  text-decoration: none;
+  border: 1px solid #9b9b9b;
+  padding: 5px 55px 5px 55px;
+  font-family: 'Mouse Memoirs', sans-serif;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 28px;
+  display: block;
+  border-radius: 5px;
+  transition: all 0.5s;
+  color: #404040;
+}
+
+.section__description--btn:hover {
+  background-color: rgb(66, 66, 66);
+  color: #f1f1f1;
+}
+
+.section__description--btn:active {
+  transition: 0.1s ease-out;
+  cursor: pointer;
+  box-shadow: 0 0 18px rgba(113, 113, 113, 0.2);
+  transform: translate(0%, 4%);
+  /* box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15); */
+}
+
+.footer {
+  background-color: #fff4ee;
+  height: 600px;
+  background: #fff4ee url('../img/palms_footer.png') center bottom no-repeat;
+}
+
+.footer__links {
+  padding-top: 280px;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  z-index: 1;
+}
+
+.footer__item a {
+  margin-right: 50px;
+}
+
+.footer__link {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 400;
+  color: #8a8a8a;
+  z-index: 1000;
+}
+
+.footer__logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 90px;
+}
+
+.footer__logo {
+  scale: 80%;
+  cursor: pointer;
+  opacity: 70%;
+}
+
+.footer__copyright {
+  color: #929292;
+  display: block;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 16px;
+}
+
+.github-link {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.footer__link:hover {
+  color: rgb(58, 58, 58);
 }

@@ -241,7 +241,7 @@ const obsOptionsNav = {
   // but its better to calculate it dynamicly in order to have a good
   // responsive design. (hardcoding 90px is not always a good idea)
   // rootMargin: '-90px',
-  rootMargin: `-${navHeight - navHeight + 1}px`,
+  rootMargin: `-${navHeight}px`,
 };
 
 const obsCallbackNav = function (entries, observer) {
