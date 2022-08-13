@@ -215,7 +215,12 @@
 
       <div class="plan">
         <div class="plan__hotels">
-          <img class="plan__hotels_img" src="img/plan_1.png" alt="" />
+          <img
+            class="plan__hotels_img plan_images lazy-img"
+            src="img/plan_1_lazy.png"
+            data-src="img/plan_1.png"
+            alt="Hotels"
+          />
 
           <div class="plan__text">
             <h6 class="plan__title">Hotels & Camping</h6>
@@ -228,7 +233,11 @@
               and sold exclusively through Valley Music Travel.
             </p>
           </div>
-          <img class="plan__texture-2" src="img/texture_3.png" alt="" />
+          <img
+            class="plan__texture-2 plan_images"
+            src="img/texture_3.png"
+            alt=""
+          />
         </div>
         <div class="plan__payment">
           <div class="plan__text">
@@ -242,7 +251,12 @@
               through December.
             </p>
           </div>
-          <img class="plan__payment_img" src="img/plan_2.png" alt="" />
+          <img
+            class="plan__payment_img plan_images lazy-img"
+            src="img/plan_2_lazy.png"
+            data-src="img/plan_2.png"
+            alt="Plan"
+          />
           <img class="plan__texture-1" src="img/texture_2.png" alt="" />
         </div>
       </div>
@@ -292,7 +306,25 @@
         >. Made only for educational purposes.
       </p>
     </footer>
-
+    <!-- Modal Window Starts Here -->
+    <div class="modal hidden">
+      <button class="btn--close-modal">&times;</button>
+      <h2 class="modal__header">
+        Open your bank account <br />
+        in just <span class="highlight">5 minutes</span>
+      </h2>
+      <form class="modal__form">
+        <label>First Name</label>
+        <input type="text" />
+        <label>Last Name</label>
+        <input type="text" />
+        <label>Email Address</label>
+        <input type="email" />
+        <button class="btn">Next step &rarr;</button>
+      </form>
+    </div>
+    <div class="overlay hidden"></div>
+    <!-- Modal Window Ends Here -->
     <script src="js/script.js"></script>
   </body>
 </html>

@@ -297,3 +297,124 @@ tabsContainer.addEventListener('click', function (event) {
     .querySelector(`.experience__content--${clickedElem.dataset.tab}`)
     .classList.add('experience__content--active');
 });
+/* 
+
+
+
+
+
+*/
+// Smooth Revealing sections while scrolling down (only for offer in footer! otherwise it will look bad)
+// To do that I use Intersection Observer API again
+
+const allSections = document.querySelector('.section');
+const sectionToPop = document.querySelector('.offer');
+
+const obsOptionsSections = {
+  root: null,
+  threshold: 0.1,
+};
+
+const obsCallbackSections = function (entries, observer) {
+  const [entry] = entries;
+
+  // if section is not intersectin - do nothing
+  if (!entry.isIntersecting) return;
+  // if it does remove class
+  else entry.target.classList.remove('section--hidden');
+  // onse we observe the section - we removed the class from it
+  // after that - we should stop observing it
+  observer.unobserve(entry.target);
+};
+
+// the main observer trigger with options and function
+const sectionObserver = new IntersectionObserver(
+  obsCallbackSections,
+  obsOptionsSections
+);
+
+sectionToPop.classList.add('section--hidden');
+sectionObserver.observe(sectionToPop);
+/* 
+
+
+
+*/
+// Lazy images loading
+// To do that I use Intersection Observer API again
+
+// where to reveal sections?
+// selecting only these imgs that has data-src attribute
+const imgLazy = document.querySelectorAll('img[data-src]');
+
+const obsImgOpt = {
+  root: null,
+  threshold: 0,
+  // lets load lazy img sooner
+  /* rootMargin: '100px', */
+};
+
+const obsImgCallback = function (entries, observer) {
+  const [img] = entries;
+
+  // guard close. Means - do smt if only intersecting
+  if (!img.isIntersecting) return;
+
+  // replace src with data-src
+  // src is low res img. And we need to change it with HiRes img
+  // which is located in data-src="img/card.jpg" attribute in html
+  img.target.src = img.target.dataset.src;
+
+  // Now its time to remove blur filter.
+  // However we do not want to remove it immideatly
+  // because we do not want want to show blured image if it needs some time to load
+  // thats why we have to listen to the 'load' event to be done when HiRes img loads completely
+  img.target.addEventListener('load', function () {
+    img.target.classList.remove('lazy-img');
+  });
+  observer.unobserve(img.target);
+};
+
+const imgObserver = new IntersectionObserver(obsImgCallback, obsImgOpt);
+
+imgLazy.forEach(function (img) {
+  imgObserver.observe(img);
+});
+/* 
+
+
+
+
+*/
+///////////////////////////////////////
+// Modal window Script Start
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const btnCloseModal = document.querySelector('.btn--close-modal');
+const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+
+const openModal = function (event) {
+  event.preventDefault();
+  modal.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+};
+
+const closeModal = function () {
+  event.preventDefault();
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+};
+
+btnsOpenModal.forEach(function (btn) {
+  btn.addEventListener('click', openModal);
+});
+
+btnCloseModal.addEventListener('click', closeModal);
+overlay.addEventListener('click', closeModal);
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    closeModal();
+  }
+});
+// Modal window Script Ends here
