@@ -17,6 +17,9 @@ const closeModal = function (event) {
   event.preventDefault();
   modal.classList.add('hidden');
   overlay.classList.add('hidden');
+  document.querySelectorAll('.modal__form-input').forEach(function (item) {
+    item.value = '';
+  });
 };
 
 btnsOpenModal.forEach(function (btn) {
