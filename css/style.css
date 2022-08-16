@@ -29,7 +29,6 @@ body {
   line-height: 1.9;
   background-color: #f3f3f3;
   width: 100%;
-  z-index: 0;
 }
 
 .nav {
@@ -342,7 +341,6 @@ body {
   margin-right: 25px;
   border-radius: 3px;
   /*  border: 1px solid #d3d3d3; */
-  z-index: 11;
 }
 
 .experience__tab--active {
@@ -394,7 +392,6 @@ body {
   font-weight: 300;
   font-size: 16px;
   width: 380px;
-  z-index: 10;
 }
 
 .section--3 {
@@ -423,13 +420,11 @@ body {
   padding-bottom: 80px;
   display: flex;
   justify-content: space-between;
-  z-index: 10;
 }
 
 .plan__payment {
   display: flex;
   justify-content: space-between;
-  z-index: 10;
 }
 
 .plan__title {
@@ -528,7 +523,6 @@ body {
   display: flex;
   justify-content: center;
   list-style: none;
-  z-index: 1;
 }
 
 .footer__item a {
@@ -540,7 +534,6 @@ body {
   font-size: 16px;
   font-weight: 400;
   color: #8a8a8a;
-  z-index: 1000;
 }
 
 .footer__logo {
@@ -626,10 +619,15 @@ body {
 }
 
 .modal__form input {
-  font-size: 1.7rem;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  color: #404040;
   padding: 0.2rem 1.8rem;
   border: 1px solid rgb(202, 202, 202);
   border-radius: 3px;
+  z-index: 99999;
+  height: 45px;
+  width: 390px;
 }
 
 .modal__btn {
@@ -702,7 +700,7 @@ body {
   font-size: 16px;
   font-weight: 400;
   transition: all 0.5s;
-  z-index: 500;
+  z-index: 20;
 }
 
 .cookie-p {
